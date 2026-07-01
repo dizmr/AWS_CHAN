@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Дошка анонімних зізнань{% endblock %}</title>
+    <title>{% block title %}diz chan{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'board/style.css' %}">
 </head>
 <body>
     <header class="site-header">
-        <a href="{% url 'board:index' %}" class="logo">🕯️ Анонімні зізнання</a>
-        <a href="{% url 'board:create' %}" class="btn btn-accent">Залишити зізнання</a>
+        <a href="{% url 'board:index' %}" class="logo"> anon messages</a>
+        <a href="{% url 'board:create' %}" class="btn btn-accent">message</a>
     </header>
 
     <main class="container">
@@ -26,7 +26,7 @@
     </main>
 
     <footer class="site-footer">
-        <p>Без реєстрації. Без слідів. Просто скажіть це.</p>
+        <p>just type</p>
     </footer>
 </body>
 </html>
