@@ -21,9 +21,9 @@
     {% if page_obj.has_other_pages %}
         <nav class="pagination">
             {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}">← Назад</a>
+                <a href="?page={{ page_obj.previous_page_number }}">← back</a>
             {% endif %}
-            <span>Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}</span>
+            <span>page {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}</span>
             {% if page_obj.has_next %}
                 <a href="?page={{ page_obj.next_page_number }}">Далі →</a>
             {% endif %}
