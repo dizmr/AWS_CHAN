@@ -1,0 +1,32 @@
+{% extends 'board/base.html' %}
+
+{% block content %}
+    <div class="feed">
+        {% for confession in page_obj %}
+            <article class="card">
+                <p class="card-text">
+                    <a href="{% url 'board:detail' confession.pk %}">{{ confession.text|truncatechars:220 }}</a>
+                </p>
+                <div class="card-meta">
+                    <span>{{ confession.created_at|date:"d.m.Y H:i" }}</span>
+                    <span>👁 {{ confession.views_count }}</span>
+                    <span>❤ {{ confession.likes_count }}</span>
+                </div>
+            </article>
+        {% empty %}
+            <p class="empty-state">Поки що тут порожньо. Будьте першими.</p>
+        {% endfor %}
+    </div>
+
+    {% if page_obj.has_other_pages %}
+        <nav class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">← Назад</a>
+            {% endif %}
+            <span>Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Далі →</a>
+            {% endif %}
+        </nav>
+    {% endif %}
+{% endblock %}

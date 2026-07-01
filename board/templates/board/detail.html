@@ -1,0 +1,43 @@
+{% extends 'board/base.html' %}
+
+{% block content %}
+    <article class="card card-detail">
+        <p class="card-text">{{ confession.text }}</p>
+        <div class="card-meta">
+            <span>{{ confession.created_at|date:"d.m.Y H:i" }}</span>
+            <span>👁 {{ confession.views_count }}</span>
+            <span id="likes-count">❤ {{ confession.likes_count }}</span>
+        </div>
+        <button
+            id="like-btn"
+            class="btn btn-outline"
+            data-url="{% url 'board:like' confession.pk %}"
+            {% if liked %}disabled{% endif %}
+        >
+            {% if liked %}Вподобано{% else %}Вподобати ❤{% endif %}
+        </button>
+    </article>
+
+    <a href="{% url 'board:index' %}" class="back-link">← До стрічки</a>
+
+    <script>
+        const btn = document.getElementById('like-btn');
+        btn.addEventListener('click', async () => {
+            const csrftoken = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('csrftoken='))
+                ?.split('=')[1];
+
+            const response = await fetch(btn.dataset.url, {
+                method: 'POST',
+                headers: {'X-CSRFToken': csrftoken},
+            });
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('likes-count').textContent = `❤ ${data.likes_count}`;
+                btn.disabled = true;
+                btn.textContent = 'Вподобано';
+            }
+        });
+    </script>
+{% endblock %}

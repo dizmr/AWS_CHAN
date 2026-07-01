@@ -1,0 +1,20 @@
+{% extends 'board/base.html' %}
+
+{% block content %}
+    <h1 class="page-title">Залишити анонімне зізнання</h1>
+    <p class="hint">
+        Запис буде автоматично перевірено. Реєстрація не потрібна,
+        ваші дані ніде не зберігаються.
+    </p>
+
+    <form method="post" class="confession-form">
+        {% csrf_token %}
+        {{ form.text }}
+        {% if form.text.errors %}
+            <ul class="form-errors">
+                {% for error in form.text.errors %}<li>{{ error }}</li>{% endfor %}
+            </ul>
+        {% endif %}
+        <button type="submit" class="btn btn-accent">Опублікувати</button>
+    </form>
+{% endblock %}
