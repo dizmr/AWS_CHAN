@@ -13,7 +13,6 @@ LIKED_SESSION_KEY = 'liked_confessions'
 
 
 def index(request):
-    """Публічна стрічка — лише опубліковані (APPROVED) записи."""
     qs = Confession.objects.filter(status=Confession.Status.APPROVED)
     paginator = Paginator(qs, 10)
     page_obj = paginator.get_page(request.GET.get('page'))
@@ -28,8 +27,8 @@ def create_confession(request):
     if request.method == 'POST':
         form = ConfessionForm(request.POST)
         if form.is_valid():
-            confession = form.save()  # status=PENDING за замовчуванням
-            moderate_confession(confession)  # одразу проганяємо через модерацію
+            confession = form.save() 
+            moderate_confession(confession)  
 
             if confession.status == Confession.Status.APPROVED:
                 messages.success(request, 'Ваше зізнання опубліковано.')
