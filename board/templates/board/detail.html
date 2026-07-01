@@ -14,11 +14,11 @@
             data-url="{% url 'board:like' confession.pk %}"
             {% if liked %}disabled{% endif %}
         >
-            {% if liked %}Вподобано{% else %}Вподобати ❤{% endif %}
+            {% if liked %}liked{% else %}like ❤{% endif %}
         </button>
     </article>
 
-    <a href="{% url 'board:index' %}" class="back-link">← До стрічки</a>
+    <a href="{% url 'board:index' %}" class="back-link">← to board</a>
 
     <script>
         const btn = document.getElementById('like-btn');
