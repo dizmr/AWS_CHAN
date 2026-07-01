@@ -4,16 +4,7 @@ from django.db import models
 
 
 class Confession(models.Model):
-    """
-    Анонімний запис на дошці зізнань.
-
-    Логіка станів:
-      PENDING   -> запис щойно створено, ще не пройшов перевірку
-      APPROVED  -> пройшов автоматичну перевірку на заборонені слова,
-                   видимий у публічній стрічці
-      REJECTED  -> містить заборонені слова, приховано від публіки
-    """
-
+  
     class Status(models.TextChoices):
         PENDING = 'pending', 'На перевірці'
         APPROVED = 'approved', 'Опубліковано'
