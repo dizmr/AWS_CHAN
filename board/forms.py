@@ -9,7 +9,7 @@ class ConfessionForm(forms.ModelForm):
         fields = ['text']
         widgets = {
             'text': forms.Textarea(attrs={
-                'placeholder': 'Розкажіть щось анонімно… (до 1000 символів)',
+                'placeholder': 'just type smt...',
                 'maxlength': 1000,
                 'rows': 5,
             })
@@ -19,5 +19,5 @@ class ConfessionForm(forms.ModelForm):
     def clean_text(self):
         text = self.cleaned_data['text'].strip()
         if len(text) < 3:
-            raise forms.ValidationError('Запис занадто короткий.')
+            raise forms.ValidationError('short msg')
         return text
