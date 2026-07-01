@@ -6,9 +6,9 @@ from django.db import models
 class Confession(models.Model):
   
     class Status(models.TextChoices):
-        PENDING = 'pending', 'На перевірці'
-        APPROVED = 'approved', 'Опубліковано'
-        REJECTED = 'rejected', 'Відхилено'
+        PENDING = 'pending', 'chacking...'
+        APPROVED = 'approved', 'progress!'
+        REJECTED = 'rejected', 'cancelled'
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     text = models.TextField(max_length=1000)
@@ -26,8 +26,8 @@ class Confession(models.Model):
 
     class Meta:
         ordering = ['-created_at']
-        verbose_name = 'Зізнання'
-        verbose_name_plural = 'Зізнання'
+        verbose_name = 'msg'
+        verbose_name_plural = 'msg'
 
     def __str__(self):
         preview = (self.text[:40] + '…') if len(self.text) > 40 else self.text
