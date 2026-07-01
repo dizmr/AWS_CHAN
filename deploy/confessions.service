@@ -1,14 +1,4 @@
-# Файл systemd-сервісу.
-# Розташування на сервері: /etc/systemd/system/confessions.service
-#
-# Встановлення:
-#   sudo cp deploy/confessions.service /etc/systemd/system/confessions.service
-#   sudo systemctl daemon-reload
-#   sudo systemctl enable confessions
-#   sudo systemctl start confessions
-#
-# ВАЖЛИВО: шляхи нижче (/opt/confessions_board) мають відповідати
-# реальному розташуванню проєкту на EC2-інстансі.
+
 
 [Unit]
 Description=Confessions Board (Django + Gunicorn)
