@@ -1,10 +1,10 @@
 {% extends 'board/base.html' %}
 
 {% block content %}
-    <h1 class="page-title">Залишити анонімне зізнання</h1>
+    <h1 class="page-title">leave an anonymous confession</h1>
     <p class="hint">
-        Запис буде автоматично перевірено. Реєстрація не потрібна,
-        ваші дані ніде не зберігаються.
+        your post will be checked automatically. no registration is required,
+        and your data is not stored anywhere.
     </p>
 
     <form method="post" class="confession-form">
@@ -15,6 +15,6 @@
                 {% for error in form.text.errors %}<li>{{ error }}</li>{% endfor %}
             </ul>
         {% endif %}
-        <button type="submit" class="btn btn-accent">Опублікувати</button>
+        <button type="submit" class="btn btn-accent">publish</button>
     </form>
 {% endblock %}
