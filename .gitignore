@@ -1,27 +1,23 @@
-# Секрети та середовище
+
 .env
 *.pem
 *.key
 
-# Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.egg-info/
 .eggs/
 
-# Django
 *.log
 db.sqlite3
 staticfiles/
 media/
 
-# Virtualenv
 venv/
 .venv/
 env/
 
-# IDE / OS
 .vscode/
 .idea/
 .DS_Store
