@@ -1,8 +1,4 @@
-"""
-Django settings for confessions_board project.
-Усі чутливі значення читаються зі змінних середовища (.env),
-а не прописуються у коді напряму.
-"""
+
 from pathlib import Path
 import environ
 
@@ -11,9 +7,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
     DEBUG=(bool, False),
 )
-# Читаємо .env, якщо він існує (локальна розробка).
-# На проді .env підключається через EnvironmentFile= у systemd-юніті,
-# тож змінні вже будуть у os.environ ще до старту процесу.
 environ.Env.read_env(BASE_DIR / '.env')
 
 SECRET_KEY = env('SECRET_KEY')
@@ -61,7 +54,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# База даних — PostgreSQL, розгорнута безпосередньо на EC2-інстансі
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -91,10 +83,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# --- Логіка модерації дошки анонімних зізнань ---
-# Список заборонених слів для автоматичної перевірки нових записів.
-# Можна винести в окрему змінну середовища BANNED_WORDS (через кому),
-# якщо потрібно змінювати список без редагування коду.
 BANNED_WORDS = env.list(
     'BANNED_WORDS',
     default=[
